@@ -1,0 +1,5 @@
+{
+  "name": "tiga-segi-coffee-demo",
+  "compatibility_date": "2026-10-16",
+  "assets": { "directory": "./dist" }
+}

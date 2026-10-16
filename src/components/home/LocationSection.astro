@@ -1,0 +1,13 @@
+---
+import Icon from '../ui/Icon.astro';
+import OpeningHours from '../ui/OpeningHours.astro';
+import { business } from '../../data/business';
+---
+<section class="location-section section-space container" id="lokasi" aria-labelledby="location-title">
+  <div class="location-copy"><p class="eyebrow section-label"><span>04</span> SEE YOU AT TIGA SEGI</p><h2 id="location-title">Sini,<br /><em>mampir dulu.</em></h2><p class="location-intro">Rencanakan sore santaimu.<br />Kopinya boleh sendiri, ceritanya boleh bersama.</p><a class="button button-olive" href={business.maps} target="_blank" rel="noopener noreferrer">Petunjuk Arah<Icon name="arrow-up-right" size={19} /></a></div>
+  <div class="location-details">
+    <div class="location-detail"><Icon name="pin" size={23} /><div><h3>TEMU DI SINI</h3><address>{business.address}.</address><a class="inline-link" href={business.maps} target="_blank" rel="noopener noreferrer">Buka Google Maps<Icon name="arrow-up-right" size={16} /></a></div></div>
+    <div class="location-detail"><Icon name="clock" size={23} /><div><h3>WAKTU UNTUK NGOPI</h3><OpeningHours /></div></div>
+    <div class="location-contact"><a href={business.instagram} target="_blank" rel="noopener noreferrer"><Icon name="instagram" size={20} /><span>{business.instagramHandle}</span><Icon name="arrow-up-right" size={17} /></a><a href={business.phoneHref}><Icon name="phone" size={20} /><span>{business.phone}</span><Icon name="arrow-up-right" size={17} /></a></div>
+  </div>
+</section>

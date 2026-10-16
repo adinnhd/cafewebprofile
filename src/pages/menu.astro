@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MenuExplorer from '../components/menu/MenuExplorer.svelte';
+import Icon from '../components/ui/Icon.astro';
+import OpeningHours from '../components/ui/OpeningHours.astro';
+import { categories, groupByCategory, menu } from '../data/menu';
+import { getDisplayMenu } from '../lib/menu-images';
+import { formatPrice } from '../lib/format';
+import { business } from '../data/business';
+import { Picture } from 'astro:assets';
+import icedCoffee from '../assets/photos/iced-coffee.jpg';
+const items = await getDisplayMenu();
+---
+<BaseLayout title="Menu Tiga Segi Coffee — Temukan Pilihanmu | Konsep Independen" description="Jelajahi referensi menu Tiga Segi Coffee: signature coffee, manual brew, minuman non-kopi, dan camilan. Harga historis belum diverifikasi. Demo independen Studio Beranjak.">
+  <section class="menu-page-hero"><div class="container menu-hero-inner"><div class="menu-hero-copy"><a class="breadcrumb" href="/">BERANDA <span>/</span> <span>MENU KAMI</span></a><p class="eyebrow">A CUP FOR EVERY MOOD</p><h1>Menu kami,<br /><em>momen kamu.</em></h1><p>Kopi untuk memulai cerita. Camilan untuk memperpanjangnya.<br class="desktop-break" /> Pilih yang paling pas dengan suasana hatimu.</p><span class="demo-pill"><span></span>MENU DEMO · HARGA BELUM DIVERIFIKASI</span></div><div class="menu-hero-photo"><Picture src={icedCoffee} formats={['avif', 'webp']} widths={[320, 480, 640]} sizes="(max-width: 767px) 32vw, 25vw" width={400} height={450} alt="Foto ilustrasi kopi susu dingin; bukan produk asli Tiga Segi Coffee" loading="eager" fetchpriority="high" /><span>YOUR DAILY LITTLE PLEASURE.</span></div><span class="menu-hero-triangle" aria-hidden="true">△</span></div></section>
+  <MenuExplorer client:load {items} {categories} />
+  <noscript><section class="container no-js-menu" aria-label="Daftar menu lengkap">{groupByCategory(menu).map((group) => <div><h2>{group.label}</h2><dl>{group.items.map((item) => <div><dt>{item.name}</dt><dd>{formatPrice(item.price)}{item.price !== null && '*'}</dd></div>)}</dl></div>)}</section></noscript>
+  <section class="menu-visit-strip container"><div><p class="eyebrow">SUDAH KETEMU PILIHANMU?</p><h2>Selanjutnya, <em>tinggal mampir.</em></h2><p>{business.shortAddress}</p><OpeningHours compact /></div><a class="button button-olive" href={business.maps} target="_blank" rel="noopener noreferrer">Temukan Tiga Segi<Icon name="arrow-up-right" size={19} /></a></section>
+</BaseLayout>

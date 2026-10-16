@@ -1,0 +1,17 @@
+---
+import { Picture } from 'astro:assets';
+import cafe from '../../assets/photos/coffeehouse.jpg';
+import latte from '../../assets/photos/latte.jpg';
+import ritual from '../../assets/photos/pour-over.jpg';
+import Icon from '../ui/Icon.astro';
+import { business } from '../../data/business';
+---
+<section class="gallery-section section-space" aria-labelledby="gallery-title"><div class="container">
+  <div class="section-heading"><div><p class="eyebrow section-label"><span>03</span> THE SLOWER SIDE OF LIFE</p><h2 id="gallery-title">Sebuah jeda,<br /><em>di antara kesibukan.</em></h2></div><p>Letakkan sejenak urusan hari ini.<br />Ada waktu untuk satu cangkir lagi.</p></div>
+  <div class="gallery-grid">
+    <figure class="gallery-tall"><Picture src={latte} formats={['avif', 'webp']} widths={[360, 600, 900]} sizes="(max-width: 767px) 48vw, 30vw" width={600} height={780} alt="Ilustrasi dua cangkir latte di meja dengan tanaman hijau" loading="lazy" /><figcaption><span>01 — A CUP OF COMFORT</span></figcaption></figure>
+    <figure class="gallery-wide"><Picture src={cafe} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(max-width: 767px) 90vw, 42vw" width={860} height={640} alt="Ilustrasi suasana coffeehouse dengan lampu gantung, bukan interior Tiga Segi" loading="lazy" /><figcaption><span>02 — A WARM LITTLE CORNER</span></figcaption></figure>
+    <figure class="gallery-small"><Picture src={ritual} formats={['avif', 'webp']} widths={[300, 500, 720]} sizes="(max-width: 767px) 48vw, 24vw" width={500} height={600} alt="Ilustrasi aneka cangkir kopi dalam komposisi melingkar di meja" loading="lazy" /><figcaption><span>03 — TIME WELL SPENT</span></figcaption></figure>
+  </div>
+  <div class="gallery-bottom"><p>Fotografi editorial sebagai visual konsep.<br />Bukan dokumentasi tempat atau produk asli Tiga Segi Coffee.</p><a class="text-link light-link" href={business.instagram} target="_blank" rel="noopener noreferrer">Cerita asli di Instagram<Icon name="arrow-up-right" size={18} /></a></div>
+</div></section>

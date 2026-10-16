@@ -1,0 +1,40 @@
+---
+import Brand from '../ui/Brand.astro';
+import Icon from '../ui/Icon.astro';
+import MobileNavigation from './MobileNavigation.svelte';
+import { business, siteConfig } from '../../data/business';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<div class="announcement"><span class="announcement-dot"></span>{siteConfig.conceptCredit}<span class="announcement-note">A little pause, a good cup.</span></div>
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <Brand />
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <a href="/" data-nav="home" aria-current={currentPath === '/' ? 'page' : undefined}>Beranda</a>
+      <a href="/menu" data-nav="menu" aria-current={currentPath === '/menu' ? 'page' : undefined}>Menu</a>
+      <a href="/#tentang" data-nav="tentang">Tentang</a>
+      <a href="/#lokasi" data-nav="lokasi">Lokasi</a>
+    </nav>
+    <div class="header-actions">
+      <a class="button button-small button-olive" href="/menu">Lihat Menu<Icon name="arrow-up-right" size={17} /></a>
+      <MobileNavigation client:load currentPath={currentPath} maps={business.maps} instagram={business.instagram} />
+    </div>
+  </div>
+</header>
+<script>
+  import { observeNavigation } from '../../lib/navigation';
+
+  const header = document.querySelector<HTMLElement>('#site-header');
+  if (header) {
+    const sync = () => header.classList.toggle('is-scrolled', window.scrollY > 48);
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+    const links = header.querySelectorAll<HTMLAnchorElement>('.desktop-nav [data-nav]');
+    observeNavigation((target) => {
+      for (const link of links) {
+        if (link.dataset.nav === target) link.setAttribute('aria-current', target === 'home' || target === 'menu' ? 'page' : 'location');
+        else link.removeAttribute('aria-current');
+      }
+    });
+  }
+</script>

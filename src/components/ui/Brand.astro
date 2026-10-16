@@ -1,0 +1,8 @@
+---
+interface Props { footer?: boolean; }
+const { footer = false } = Astro.props;
+---
+<a href="/" class:list={['brand', { 'brand-footer': footer }]}>
+  <span class="brand-logo"><img src="/logo-tigasegi.png" alt="Tiga Segi Coffee" width="1254" height="1254" loading="eager" decoding="async" /></span>
+  <span class="sr-only"> — beranda</span>
+</a>

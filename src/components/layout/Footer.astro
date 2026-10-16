@@ -1,0 +1,15 @@
+---
+import Brand from '../ui/Brand.astro';
+import Icon from '../ui/Icon.astro';
+import { business } from '../../data/business';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div><Brand footer /><p>Kopi, cerita, dan waktu yang terasa lebih pelan.<br />Dari Cirebon, untuk momen sederhana.</p></div>
+      <nav aria-label="Tautan footer"><span class="eyebrow">MAMPIR SEBENTAR</span><a href="/menu">Jelajahi menu<Icon name="arrow-up-right" size={16} /></a><a href="/#tentang">Tentang Tiga Segi<Icon name="arrow-up-right" size={16} /></a><a href="/#lokasi">Lokasi & kontak<Icon name="arrow-up-right" size={16} /></a></nav>
+      <div class="footer-social"><span class="eyebrow">KEEP IN TOUCH</span><a href={business.instagram} target="_blank" rel="noopener noreferrer">@tigasegi.coffee<Icon name="arrow-up-right" size={17} /></a><span>{business.shortAddress}</span><span>Jawa Barat, Indonesia</span></div>
+    </div>
+    <div class="footer-bottom"><p>A website concept by <span>Studio Beranjak.</span><br class="mobile-break" /> Not an official Tiga Segi Coffee website.</p><a href="#top">Kembali ke atas<Icon name="arrow-up-right" size={16} /></a></div>
+  </div>
+</footer>

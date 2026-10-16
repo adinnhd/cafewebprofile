@@ -1,0 +1,22 @@
+---
+import { business } from '../../data/business';
+
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<dl class:list={['opening-hours', { compact }]} aria-label="Jam operasional">
+  {business.openingHours.map(({ days, opens, closes }) => (
+    <div>
+      <dt>{days}</dt>
+      <dd><time datetime={opens.replace('.', ':')}>{opens}</time>–<time datetime={closes.replace('.', ':')}>{closes}</time> WIB</dd>
+    </div>
+  ))}
+</dl>
+<style>
+  .opening-hours { margin: 0; font-size: 14px; line-height: 1.9; }
+  .opening-hours > div { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 24px; }
+  .opening-hours > div + div { margin-top: 6px; }
+  dt { color: var(--muted); }
+  dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .compact { margin-top: 12px; max-width: 350px; font-size: 12px; }
+</style>

@@ -1,0 +1,9 @@
+---
+import { Picture } from 'astro:assets';
+import moments from '../../assets/photos/slow-moments.jpg';
+import Icon from '../ui/Icon.astro';
+---
+<section class="about-section section-space container" id="tentang" aria-labelledby="about-title">
+  <div class="about-image-column"><div class="about-image"><Picture src={moments} formats={['avif', 'webp']} widths={[400, 700, 1000]} sizes="(max-width: 767px) 90vw, 42vw" width={620} height={690} alt="Foto konsep beberapa tangan mengangkat cangkir kopi bersama di meja" loading="lazy" /></div><span class="photo-caption">A LITTLE COFFEE. A LOT OF CONNECTION.<span>FOTO ILUSTRATIF</span></span></div>
+  <div class="about-copy"><p class="eyebrow section-label"><span>01</span> TENTANG TIGA SEGI</p><h2 id="about-title">Ada kopi.<br />Ada teman.<br /><em>Ada alasan untuk tinggal.</em></h2><p>Tak semua pertemuan butuh rencana besar. Kadang, cukup satu meja, secangkir kopi, dan teman yang bikin lupa waktu.</p><p>Begitulah cara kami membayangkan Tiga Segi: dekat, sederhana, dan hangat. Sebuah coffee spot lokal di Cirebon untuk menikmati hal-hal kecil yang berarti.</p><div class="about-signoff"><Icon name="coffee" size={30} /><span>Datang untuk kopinya.<br /><strong>Tinggal untuk ceritanya.</strong></span></div></div>
+</section>

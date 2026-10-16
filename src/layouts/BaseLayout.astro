@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/fraunces/wght-italic.css';
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../data/business';
+import ogImage from '../assets/photos/coffee-ritual.jpg';
+import { getImage } from 'astro:assets';
+import headingFont from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
+import italicFont from '@fontsource-variable/fraunces/files/fraunces-latin-wght-italic.woff2?url';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const socialImage = await getImage({ src: ogImage, width: 1200, height: 630, fit: 'cover', format: 'jpg', layout: 'none' });
+const canonical = siteConfig.canonicalOrigin ? new URL(Astro.url.pathname, siteConfig.canonicalOrigin).href : null;
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#454e36" />
+    <meta name="robots" content={siteConfig.allowIndexing && siteConfig.isOfficial ? 'index, follow' : 'noindex, nofollow'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Tiga Segi Coffee — Independent Concept" />
+    <meta property="og:image" content={siteConfig.canonicalOrigin ? new URL(socialImage.src, siteConfig.canonicalOrigin).href : socialImage.src} />
+    <meta property="og:image:alt" content="Foto ilustrasi seduhan kopi — konsep independen Tiga Segi Coffee" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={italicFont} as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>
